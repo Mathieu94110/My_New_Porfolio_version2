@@ -1,6 +1,6 @@
 const path = require("path");
 const common = require("./webpack.common");
-const merge = require("webpack-merge");
+const { merge } = require("webpack-merge");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
@@ -28,7 +28,7 @@ module.exports = merge(common, {
       new OptimizeCssAssetsPlugin(),
       new TerserPlugin(),
       new HtmlWebpackPlugin({
-        title: "Caching",
+        template: "./src/index.html",
         minify: {
           removeAttributeQuotes: true,
           collapseWhitespace: true,

@@ -1,13 +1,646 @@
-@font-face {
-  font-family: "MyFont";
-  src: url("./my-font.woff2") format("woff2"),
-    url("./my-font.woff") format("woff");
-  font-weight: 600;
-  font-style: normal;
+$primary-color: #444;
+$secondary-color: #eece1a;
+$show-home-image: true;
+$home-image: url(./images/coding-academy.jpeg);
+
+$background-opacity: 0.9;
+
+@mixin easeOut {
+  transition: all 1.5s ease-out;
 }
 
-.hello {
-  color: red;
-  font-family: "MyFont";
-  background: url("./eagle.jpg");
+@mixin background {
+  @if $show-home-image {
+    &#bg-img {
+      &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: rgba($primary-color, $background-opacity);
+      }
+    }
+  }
+}
+* {
+  box-sizing: border-box;
+}
+
+#bg-img {
+  @include background;
+  background-color: $primary-color;
+  color: #fff;
+  height: 100vh;
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.7;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 400;
+
+  &.lg-heading {
+    font-size: 6rem;
+  }
+
+  &.sm-heading {
+    margin-bottom: 2rem;
+    padding: 0.2rem 1rem;
+    background: rgba(lighten($primary-color, 2), 0.5);
+  }
+}
+a {
+  color: #fff;
+  text-decoration: none;
+}
+header {
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+}
+.text-secondary {
+  color: $secondary-color;
+}
+main {
+  padding: 4rem;
+  height: 100%;
+
+  .icons {
+    margin-top: 1rem;
+    a {
+      padding: 0.4rem;
+      &:hover {
+        color: $secondary-color;
+        @include easeOut();
+      }
+    }
+  }
+  &#home {
+    overflow: hidden;
+    h1 {
+      margin-top: 20vh;
+    }
+  }
+}
+// Menu Button
+.menu-btn {
+  position: absolute;
+  z-index: 3;
+  right: 35px;
+  top: 35px;
+  cursor: pointer;
+  @include easeOut;
+
+  .btn-line {
+    width: 28px;
+    height: 3px;
+    margin: 0 0 5px 0;
+    background: #fff;
+    @include easeOut;
+  }
+  //Rotate Into X With Menu Lines
+  &.close {
+    transform: rotate(180deg);
+    .btn-line {
+      //Line 1 - Rotate
+      &:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      //Line 2 - Hide
+      &:nth-child(2) {
+        opacity: 0;
+      }
+      //Line 3 - Rotate
+      &:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+      }
+    }
+  }
+}
+
+//Menu Overlay
+.menu {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  opacity: 0.9;
+  visibility: hidden;
+
+  &.show {
+    visibility: visible;
+  }
+  &-branding,
+  &-nav {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+    float: left;
+    width: 50%;
+    height: 100vh;
+    overflow: hidden;
+  }
+  &-nav {
+    margin: 0;
+    padding: 0;
+    background: darken($primary-color, 5);
+    list-style: none;
+    font-size: 2rem;
+    transform: translate3d(0, -100%, 0);
+    @include easeOut;
+    &.show {
+      //Slide in from top
+      transform: translate3d(0, 0, 0);
+      :hover {
+        color: $secondary-color;
+        font-size: 3rem;
+      }
+    }
+  }
+  //Branding Side
+  &-branding {
+    background: $primary-color;
+    transform: translate3d(0, 100%, 0);
+    @include easeOut;
+
+    &.show {
+      //Slide in from bottom
+      transform: translate3d(0, 0, 0);
+    }
+
+    img {
+      width: 250px;
+      height: 250px;
+      margin: auto;
+      border-radius: 50%;
+      border: solid 3px $secondary-color;
+    }
+  }
+}
+
+//Responsive Home page
+@media all and (max-width: 766px) {
+  #bg-img {
+    height: 100vh;
+    main#home {
+      text-align: center;
+      align-items: center;
+
+      h1 {
+        margin-top: 10vh;
+        line-height: 1;
+        margin-bottom: 1rem;
+        font-size: 3rem;
+      }
+    }
+    ul.menu-nav,
+    div.menu-branding {
+      width: 100%;
+      min-height: 0;
+      &.show {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+    .menu-nav {
+      height: 75vh;
+      transform: translate3d(-100%, 0, 0);
+      font-size: 25px;
+    }
+    .menu-branding {
+      height: 25vh;
+      transform: translate3d(100%, 0, 0);
+
+      img {
+        width: 110px;
+        height: 110px;
+      }
+    }
+  }
+}
+
+$secondary-color: #eece1a;
+
+//Page About Me
+
+#about-me-page {
+  margin-left: 2%;
+  margin-right: 2%;
+  background-color: $primary-color;
+  color: #fff;
+  h1.lg-heading {
+    text-align: center;
+  }
+
+  #presentation {
+    height: 400px;
+    width: 100%;
+
+    .bio-container {
+      width: 100%;
+
+      display: flex;
+
+      .about-me-portrait {
+        display: grid;
+        width: 30%;
+        height: auto;
+        place-items: center;
+
+        img {
+          width: 150px;
+          height: 150px;
+          border-radius: 50%;
+          border: solid 3px $secondary-color;
+        }
+      }
+      #bio {
+        width: 60%;
+        margin: auto;
+      }
+    }
+  }
+  .container {
+    display: grid;
+    grid-template-areas: "a b c ";
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 3%;
+    .first-job {
+      grid-area: a;
+    }
+    .second-job {
+      grid-area: b;
+    }
+    .third-job {
+      grid-area: c;
+    }
+    h2 {
+      color: $secondary-color;
+    }
+    span {
+      color: #eece1a;
+      font-weight: bold;
+      text-decoration: underline #fff;
+    }
+  }
+}
+
+@media all and (max-width: 766px) {
+  //Page About Me
+  #about-me-page {
+    margin: none;
+    ul.menu-nav,
+    div.menu-branding {
+      width: 100%;
+      min-height: 0;
+      &.show {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+    .menu-nav {
+      height: 75vh;
+      transform: translate3d(-100%, 0, 0);
+      font-size: 25px;
+    }
+    .menu-branding {
+      height: 25vh;
+      transform: translate3d(100%, 0, 0);
+
+      img {
+        width: 110px;
+        height: 110px;
+      }
+    }
+
+    #presentation {
+      width: 100%;
+      height: 450px !important;
+
+      h1.lg-heading {
+        padding-top: 4%;
+        height: 100px;
+        font-size: 2rem;
+      }
+
+      .bio-container {
+        width: 100% !important;
+        display: block !important;
+
+        .about-me-portrait {
+          display: grid !important;
+          margin-right: none !important;
+          width: 100% !important;
+          height: auto !important;
+          place-items: center !important;
+          margin-bottom: 15px;
+
+          img {
+            width: 150px !important;
+            height: 150px !important;
+          }
+        }
+        #bio {
+          width: 100% !important;
+        }
+      }
+    }
+    .container {
+      grid-template-areas: "a" "b" "c" !important;
+      grid-template-columns: 1fr !important;
+    }
+  }
+}
+
+//My Work
+#my-work-page {
+  background-color: $primary-color;
+  height: 100vh;
+
+  h1 {
+    margin: 0;
+    font-weight: 400;
+
+    &.lg-heading {
+      font-size: 5rem;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+  }
+  #text-secondary {
+    color: $secondary-color;
+  }
+  .projects {
+    margin: auto;
+    display: grid;
+    grid-template-areas: "col-sm col-sm col-sm";
+    grid-gap: 0.7rem;
+    grid-template-columns: repeat(4, 1fr);
+    width: 60%;
+
+    .item {
+      width: 100%;
+      position: relative;
+      margin: auto;
+
+      img {
+        width: 100%;
+
+        border: 3px #fff solid;
+        &:hover {
+          opacity: 0.5;
+          border-color: $secondary-color;
+          @include easeOut;
+        }
+      }
+
+      //Work Button Styles
+      .btn {
+        display: block;
+
+        border: 0;
+        margin-bottom: 0.3rem;
+        &:hover {
+          background: $secondary-color;
+          color: set-text-color($secondary-color);
+        }
+
+        &-dark {
+          @extend .btn;
+          background: darken($primary-color, 50);
+          color: #fff;
+          &:hover {
+            background: $secondary-color;
+            color: set-text-color($secondary-color);
+          }
+        }
+
+        &-light {
+          @extend .btn;
+          background: lighten($primary-color, 50);
+          color: #333;
+          &:hover {
+            background: $secondary-color;
+            color: set-text-color($secondary-color);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 766px) {
+  //My Work
+  #my-work-page {
+    background-color: $primary-color;
+    height: 100vh;
+
+    ul.menu-nav,
+    div.menu-branding {
+      width: 100%;
+      min-height: 0;
+      &.show {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+    .menu-nav {
+      height: 75vh;
+      transform: translate3d(-100%, 0, 0);
+      font-size: 25px;
+    }
+    .menu-branding {
+      height: 25vh;
+      transform: translate3d(100%, 0, 0);
+
+      img {
+        width: 110px;
+        height: 110px;
+      }
+    }
+
+    h1.lg-heading {
+      font-size: 2.5rem;
+      padding-top: 4%;
+    }
+    .projects {
+      margin: auto;
+      display: grid;
+      grid-template-areas: "col-sm col-sm";
+      grid-gap: 0.7rem;
+      grid-template-columns: repeat(2, 1fr);
+      width: 80%;
+    }
+  }
+}
+
+//Contact Form
+
+// Menu Button
+
+//Contact form after overlay button
+
+#contact-background {
+  display: grid;
+  place-items: center;
+  // background: url(.././images/contact-background.jpg) no-repeat;
+  background-size: cover;
+  height: 100%;
+  form {
+    background-color: rgba(15, 13, 13, 0.5);
+    margin: auto;
+    width: 500px;
+    height: 600px;
+
+    .form-title {
+      font-size: 2em;
+      line-height: 1.25em;
+      text-transform: uppercase;
+      font-weight: 900;
+      letter-spacing: 2px;
+      padding: 0 0 0 30px;
+      text-align: center;
+      #color-form-title {
+        color: $secondary-color;
+      }
+    }
+
+    .contact-me {
+      padding: 0 30px;
+
+      #error_message {
+        margin-bottom: 20px;
+        padding: 0px;
+        background: #fe8b8e;
+        text-align: center;
+        font-size: 14px;
+        transition: all 0.5s ease;
+      }
+
+      .items {
+        width: 100%;
+        padding-bottom: 15px;
+
+        label {
+          display: block;
+          font-size: 1em;
+          color: #fff;
+          padding-bottom: 5px;
+        }
+
+        .input,
+        .text-area,
+        .email {
+          background: transparent;
+          border: 0px 0px 1px 0px solid $secondary-color;
+          width: 100%;
+          padding: 8px 10px;
+          font-size: 1em;
+          border-radius: 3px;
+        }
+        #msg {
+          height: 100px;
+          resize: none;
+        }
+      }
+    }
+    .btn-form {
+      background: $secondary-color;
+      font-size: 1.25em;
+      padding: 10px 0;
+      text-transform: uppercase;
+      color: black;
+      font-weight: bold;
+      width: 100%;
+      cursor: pointer;
+      letter-spacing: 2px;
+    }
+  }
+}
+
+// Responsive for Contact Form
+
+@media all and (max-width: 766px) {
+  //Contact Form
+
+  // Menu Button
+
+  //Contact form after overlay button
+  #contact-background {
+    display: block;
+    height: 100%;
+    form {
+      width: 100%;
+      height: 100%;
+      background-color: rgba(15, 13, 13, 0.5);
+      margin: auto;
+
+      .form-title {
+        height: 80px;
+        font-size: 1.5em;
+        line-height: 1.25em;
+        text-transform: uppercase;
+        font-weight: 900;
+        letter-spacing: 2px;
+        padding: 0px;
+        #color-form-title {
+          color: $secondary-color;
+        }
+      }
+
+      .contact-me {
+        padding: 0 30px;
+
+        #error_message {
+          margin-bottom: 10px;
+          padding: 0px;
+          background: #fe8b8e;
+          text-align: center;
+          font-size: 14px;
+          transition: all 0.5s ease;
+        }
+
+        .items {
+          width: 100%;
+          padding-bottom: 15px;
+
+          label {
+            display: block;
+            font-size: 1em;
+            color: #fff;
+            padding-bottom: 5px;
+          }
+
+          .input,
+          .text-area,
+          .email {
+            background: transparent;
+            border: 0px 0px 1px 0px solid $secondary-color;
+            width: 100%;
+            padding: 8px 10px;
+            font-size: 1em;
+            border-radius: 3px;
+          }
+          #msg {
+            height: 100px;
+            resize: none;
+          }
+        }
+      }
+      .btn-form {
+        background: $secondary-color;
+        font-size: 1.25em;
+        padding: 10px 0;
+        text-transform: uppercase;
+        color: black;
+        font-weight: bold;
+        width: 100%;
+        cursor: pointer;
+        letter-spacing: 2px;
+      }
+    }
+  }
 }
