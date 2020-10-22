@@ -9,48 +9,19 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = merge(common, {
   mode: "production",
+  devtool: "source-map",
+  entry: {
+    index: "./src/index.html",
+    aboutme: "./src/about-me.html",
+    mywork: "./src/my-work.html",
+    contact: "./src/contact.html",
+  },
   output: {
     filename: "[name].[contentHash].bundle.js",
     path: path.resolve(__dirname, "dist"),
   },
-  optimization: {
-    runtimeChunk: "single",
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/, //maybe will be necessary to adding lodash later if bug
-          name: "vendors",
-          chunks: "all",
-        },
-      },
-    },
-    minimizer: [
-      new OptimizeCssAssetsPlugin(),
-      new TerserPlugin(),
-      new HtmlWebpackPlugin({
-        template: "./src/index.html",
-        minify: {
-          removeAttributeQuotes: true,
-          collapseWhitespace: true,
-          removeComments: true,
-        },
-      }),
-    ],
-  },
-  plugins: [
-    new MiniCssExtractPlugin({ filename: "[name].[contentHash].css" }),
-    new CleanWebpackPlugin(),
-  ],
   module: {
     rules: [
-      {
-        test: /\.scss$/,
-        use: [
-          MiniCssExtractPlugin.loader, //3. Extract css into files
-          "css-loader", //2. Turns css into commonjs
-          "sass-loader", //1. Turns sass into css
-        ],
-      },
       {
         test: /\.m?js$/,
         exclude: /(node_modules)/,
@@ -61,6 +32,75 @@ module.exports = merge(common, {
           },
         },
       },
+      {
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader, //3. Extract css into files
+          "css-loader", //2. Turns css into commonjs
+          "sass-loader", //1. Turns sass into css
+        ],
+      },
+      {
+        test: /\.(png|jpg|gif)$/i,
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              limit: 8192,
+            },
+          },
+        ],
+      },
+    ],
+  },
+  plugins: [
+    new MiniCssExtractPlugin({ filename: "[name].[contentHash].css" }),
+    new CleanWebpackPlugin(),
+
+    new HtmlWebpackPlugin({
+      template: "./src/contact.html",
+      minify: {
+        removeAttributeQuotes: true,
+        collapseWhitespace: true,
+        removeComments: true,
+      },
+    }),
+
+    new HtmlWebpackPlugin({
+      template: "./src/about-me.html",
+      minify: {
+        removeAttributeQuotes: true,
+        collapseWhitespace: true,
+        removeComments: true,
+      },
+    }),
+    new HtmlWebpackPlugin({
+      template: "./src/my-work.html",
+      minify: {
+        removeAttributeQuotes: true,
+        collapseWhitespace: true,
+        removeComments: true,
+      },
+    }),
+    new HtmlWebpackPlugin({
+      template: "./src/index.html",
+      minify: {
+        removeAttributeQuotes: true,
+        collapseWhitespace: true,
+        removeComments: true,
+      },
+    }),
+  ],
+
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true,
+      }),
+      new OptimizeCssAssetsPlugin({}),
     ],
   },
 });

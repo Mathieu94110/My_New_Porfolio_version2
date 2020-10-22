@@ -6,6 +6,12 @@ var HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = merge(common, {
   mode: "development",
   devtool: "inline-source-map",
+  entry: {
+    index: "./src/index.html",
+    aboutme: "./src/about-me.html",
+    mywork: "./src/my-work.html",
+    contact: "./src/contact.html",
+  },
   devServer: {
     contentBase: "./dist",
     hot: true,
@@ -16,11 +22,43 @@ module.exports = merge(common, {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      template: "./src/contact.html",
+      inject: true,
+      chunks: ["contact"],
+      filename: "contact.html",
+    }),
+
+    new HtmlWebpackPlugin({
+      template: "./src/about-me.html",
+      inject: true,
+      chunks: ["aboutme"],
+      filename: "about-me.html",
+    }),
+    new HtmlWebpackPlugin({
+      template: "./src/my-work.html",
+      inject: true,
+      chunks: ["mywork"],
+      filename: "my-work.html",
+    }),
+    new HtmlWebpackPlugin({
       template: "./src/index.html",
+      inject: true,
+      chunks: ["index"],
+      filename: "index.html",
     }),
   ],
   module: {
     rules: [
+      {
+        test: /\.m?js$/,
+        exclude: /(node_modules)/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+          },
+        },
+      },
       {
         test: /\.scss$/,
         use: [
