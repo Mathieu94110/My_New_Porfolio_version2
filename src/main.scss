@@ -502,20 +502,22 @@ $secondary-color: #eece1a;
   background-position: center;
   height: 100%;
   width: 100%;
-  padding-bottom: 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   color: $secondary-color;
   .container {
     width: 90%;
     margin: auto;
     overflow: hidden;
 
-    h2 {
+    h1 {
       text-align: center;
       text-decoration: underline;
-      /* text-decoration-color:red; */
       text-underline-position: under;
-
+      font-size: 30px;
       letter-spacing: 2px;
+      padding-bottom: 8%;
     }
 
     p {
@@ -530,61 +532,46 @@ $secondary-color: #eece1a;
   }
 
   .contact-form {
-    display: grid;
-    grid-template-columns: auto auto;
-
-    i.fa {
-      /* color: red; */
-      /* color: #fff; */
-      font-size: 22px;
-      padding: 3%;
-      background-color: none;
-      border-radius: 80%;
-      margin: 2%;
-      /* border: 2px solid #fff; */
-      cursor: pointer;
-      border: 2px solid $secondary-color;
-
-      &:hover {
-        cursor: pointer;
-        border: 2px solid white;
-        color: white;
-      }
-    }
-
-    .form-info {
+    #contact-hover {
       font-size: 16px;
       font-style: italic;
-      color: $secondary-color;
+      width: 80%;
       letter-spacing: 2px;
+      &:hover {
+        cursor: pointer;
+        color: white;
+      }
+      i.fa {
+        font-size: 22px;
+        padding: 3%;
+        background-color: none;
+        border-radius: 80%;
+        margin: 2%;
+
+        cursor: pointer;
+        border: 2px solid;
+      }
     }
   }
 
   input {
     padding: 10px;
     margin: 10px;
-    width: 70%;
+    width: 80%;
     background-color: rgba(136, 133, 133, 0.5);
     color: $secondary-color;
     border: none;
     outline: none;
-    ::placeholder {
-      color: $secondary-color;
-    }
   }
 
   textarea {
     padding: 10px;
     margin: 10px;
-    width: 70%;
+    width: 80%;
     background-color: rgba(136, 133, 133, 0.5);
     color: $secondary-color;
     border: none;
     outline: none;
-
-    ::placeholder {
-      color: $secondary-color;
-    }
   }
 
   .submit {
@@ -616,12 +603,60 @@ $secondary-color: #eece1a;
 // Responsive for Contact Form
 
 @media all and (max-width: 766px) {
-  #contact-section .contact-form {
-    display: block;
-    width: 100%;
-    text-align: center;
-  }
-  #contact-section .submit {
-    width: 60%;
+  #contact-section {
+    height: 100%;
+
+    .container {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .title {
+        width: 100%;
+        height: 20%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        h1 {
+          text-align: center;
+          text-decoration: underline;
+          text-underline-position: under;
+          font-size: 15px;
+          letter-spacing: 1.5px;
+          padding-bottom: 0%;
+        }
+      }
+
+      .contact-form {
+        font-size: 7px;
+        width: 100%;
+        height: 100%;
+        .location {
+          height: 40%;
+
+          #contact-hover {
+            width: 100%;
+            padding-left: 10%;
+            text-align: left;
+            font-size: 5px;
+            span.form-info {
+              font-size: 3vw;
+            }
+          }
+        }
+        .message {
+          form {
+            input {
+              margin: 1px;
+              height: 28px;
+            }
+          }
+        }
+      }
+
+      .submit {
+        width: 60%;
+      }
+    }
   }
 }

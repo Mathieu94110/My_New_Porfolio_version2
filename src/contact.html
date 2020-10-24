@@ -13,24 +13,26 @@
     <!-- contact section -->
     <section id="contact-section">
         <div class="container">
-            <h2>Contactez moi</h2>
-            <p>Vous pouvez me contacter par téléphone ou par mail </p>
+            <div class="title"><h1>Contactez moi</h1></div>
+           
+
             <div class="contact-form">
 
                 <!-- First grid -->
-                <div>
-                    <i class="fa fa-map-marker"></i><span class="form-info"> 12 rue du midi 94110 Arcueil </span><br>
-                    <i class="fa fa-phone"> </i><span class="form-info"> 0615218101</span><br>
-                    <i class="fa fa-envelope"></i><span class="form-info"> me94110@gmail.com ( lié à ce formulaire )</span>
+                <div class="location">
+                    
+                   <div id="contact-hover"> <i class="fa fa-phone"> </i><span class="form-info"> 0615218101</span></div><br>
+                    <div id="contact-hover"><i class="fa fa-envelope"></i><span class="form-info"> me94110@gmail.com ( lié à ce formulaire )</span></div><br>
+                    <div id="contact-hover"><i class="fa fa-map-marker"></i><span class="form-info"> 12 rue du midi 94110 Arcueil </span></div>
                 </div>
 
                 <!-- second grid -->
-                <div>
-                    <form action="https://formspree.io/me94110@gmail.com" method="POST">
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="text" placeholder="Last Name"><br>
+                <div class="message">
+                    <form action="https://formspree.io/me94110@gmail.com" method="POST" >
+                        <input type="text" placeholder="Votre Prénom" required>
+                        <input type="text" placeholder="Votre Nom"><br>
                         <input name="Email" id="email" type="email" placeholder="Email" required><br>
-                        <input type="text" placeholder="Subject of this message"><br>
+                        <input type="text" placeholder="Sujet du message"><br>
                         <textarea name="message" placeholder="Message" rows="5" required></textarea><br>
                         <input type="submit" value="Envoyer" class="submit" onclick="validateForm()" />
                         
