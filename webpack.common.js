@@ -19,20 +19,40 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: "index.html",
       template: "./src/index.html",
+      minify: {
+        removeAttributeQuotes: true,
+        collapseWhitespace: true,
+        removeComments: true,
+      },
     }),
     new HtmlWebpackPlugin({
       filename: "my-work.html",
       template: "./src/my-work.html",
+      minify: {
+        removeAttributeQuotes: true,
+        collapseWhitespace: true,
+        removeComments: true,
+      },
     }),
 
     new HtmlWebpackPlugin({
       filename: "about-me.html",
       template: "./src/about-me.html",
+      minify: {
+        removeAttributeQuotes: true,
+        collapseWhitespace: true,
+        removeComments: true,
+      },
     }),
 
     new HtmlWebpackPlugin({
       filename: "contact.html",
       template: "./src/contact.html",
+      minify: {
+        removeAttributeQuotes: true,
+        collapseWhitespace: true,
+        removeComments: true,
+      },
     }),
 
     new MiniCssExtractPlugin({

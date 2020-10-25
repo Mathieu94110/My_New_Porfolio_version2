@@ -14,7 +14,7 @@ module.exports = merge(common, {
         cache: true,
         parallel: true,
         sourceMap: true,
-      }),
+      }), // html files mimify en commmon.config
       new OptimizeCssAssetsPlugin({}),
     ],
   },

@@ -145,6 +145,12 @@ main {
   }
   &-branding,
   &-nav {
+    margin: 0;
+    padding: 0;
+    background: darken($primary-color, 5);
+    list-style: none;
+    font-size: 3vw;
+    transform: translate3d(0, -100%, 0);
     display: flex;
     flex-flow: column wrap;
     align-items: center;
@@ -153,21 +159,13 @@ main {
     width: 50%;
     height: 100vh;
     overflow: hidden;
-  }
-  &-nav {
-    margin: 0;
-    padding: 0;
-    background: darken($primary-color, 5);
-    list-style: none;
-    font-size: 2rem;
-    transform: translate3d(0, -100%, 0);
+
     @include easeOut;
     &.show {
       //Slide in from top
       transform: translate3d(0, 0, 0);
       :hover {
         color: $secondary-color;
-        font-size: 3rem;
       }
     }
   }
@@ -246,63 +244,69 @@ $secondary-color: #eece1a;
 //Page About Me
 
 #about-me-page {
-  margin-left: 2%;
-  margin-right: 2%;
   background-color: $primary-color;
   color: #fff;
+  li.nav-item {
+    padding-bottom: 5%;
+  }
   h1.lg-heading {
     text-align: center;
+    height: 100px;
   }
+  #left_and_right_padding {
+    padding-left: 4%;
+    padding-right: 4%;
 
-  #presentation {
-    height: 400px;
-    width: 100%;
-
-    .bio-container {
+    #presentation {
+      height: 300px;
       width: 100%;
 
-      display: flex;
+      .bio-container {
+        width: 100%;
 
-      .about-me-portrait {
-        display: grid;
-        width: 30%;
-        height: auto;
-        place-items: center;
+        display: flex;
 
-        img {
-          width: 150px;
-          height: 150px;
-          border-radius: 50%;
-          border: solid 3px $secondary-color;
+        .about-me-portrait {
+          display: grid;
+          width: 30%;
+          height: auto;
+          place-items: center;
+
+          img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: solid 3px $secondary-color;
+          }
+        }
+        #bio {
+          width: 60%;
+          margin: auto;
         }
       }
-      #bio {
-        width: 60%;
-        margin: auto;
+    }
+    .container {
+      display: grid;
+      grid-template-areas: "a b c ";
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: 3%;
+      .first-job {
+        grid-area: a;
       }
-    }
-  }
-  .container {
-    display: grid;
-    grid-template-areas: "a b c ";
-    grid-template-columns: repeat(3, 1fr);
-    column-gap: 3%;
-    .first-job {
-      grid-area: a;
-    }
-    .second-job {
-      grid-area: b;
-    }
-    .third-job {
-      grid-area: c;
-    }
-    h2 {
-      color: $secondary-color;
-    }
-    span {
-      color: #eece1a;
-      font-weight: bold;
-      text-decoration: underline #fff;
+      .second-job {
+        grid-area: b;
+      }
+      .third-job {
+        grid-area: c;
+      }
+      h2 {
+        color: $secondary-color;
+      }
+      span {
+        color: #eece1a;
+        font-weight: bold;
+        text-decoration: underline #fff;
+      }
     }
   }
 }
@@ -311,10 +315,24 @@ $secondary-color: #eece1a;
   //Page About Me
   #about-me-page {
     margin: none;
+    h1.lg-heading {
+      padding-top: 4%;
+      height: 100px;
+      font-size: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      .text-secondary {
+        padding-left: 1.2vw;
+      }
+    }
     ul.menu-nav,
     div.menu-branding {
       width: 100%;
       min-height: 0;
+      margin: auto;
+      font-size: 25px;
       &.show {
         transform: translate3d(0, 0, 0);
       }
@@ -322,7 +340,10 @@ $secondary-color: #eece1a;
     .menu-nav {
       height: 75vh;
       transform: translate3d(-100%, 0, 0);
-      font-size: 25px;
+
+      li.nav-item {
+        padding-bottom: 5%;
+      }
     }
     .menu-branding {
       height: 25vh;
@@ -334,42 +355,31 @@ $secondary-color: #eece1a;
       }
     }
 
-    #presentation {
-      width: 100%;
-      height: 450px !important;
+    .bio-container {
+      width: 100% !important;
+      display: block !important;
 
-      h1.lg-heading {
-        padding-top: 4%;
-        height: 100px;
-        font-size: 2rem;
-      }
-
-      .bio-container {
+      .about-me-portrait {
+        display: grid !important;
+        margin-right: none !important;
         width: 100% !important;
-        display: block !important;
+        height: auto !important;
+        place-items: center !important;
+        margin-bottom: 15px;
 
-        .about-me-portrait {
-          display: grid !important;
-          margin-right: none !important;
-          width: 100% !important;
-          height: auto !important;
-          place-items: center !important;
-          margin-bottom: 15px;
-
-          img {
-            width: 150px !important;
-            height: 150px !important;
-          }
-        }
-        #bio {
-          width: 100% !important;
+        img {
+          width: 150px !important;
+          height: 150px !important;
         }
       }
+      #bio {
+        width: 100% !important;
+      }
     }
-    .container {
-      grid-template-areas: "a" "b" "c" !important;
-      grid-template-columns: 1fr !important;
-    }
+  }
+  .container {
+    grid-template-areas: "a" "b" "c" !important;
+    grid-template-columns: 1fr !important;
   }
 }
 
@@ -506,6 +516,16 @@ $secondary-color: #eece1a;
   flex-direction: column;
   justify-content: center;
   color: $secondary-color;
+
+  header {
+    position: static;
+    top: 30px;
+    left: 50px;
+    li.nav-item {
+      padding-bottom: 5%;
+    }
+  }
+
   .container {
     width: 90%;
     margin: auto;
@@ -532,6 +552,8 @@ $secondary-color: #eece1a;
   }
 
   .contact-form {
+    display: grid;
+    grid-template-columns: auto auto;
     #contact-hover {
       font-size: 16px;
       font-style: italic;
@@ -605,7 +627,28 @@ $secondary-color: #eece1a;
 @media all and (max-width: 766px) {
   #contact-section {
     height: 100%;
+    ul.menu-nav,
+    div.menu-branding {
+      width: 100%;
+      min-height: 0;
+      &.show {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+    .menu-nav {
+      height: 75vh;
+      transform: translate3d(-100%, 0, 0);
+      font-size: 25px;
+    }
+    .menu-branding {
+      height: 25vh;
+      transform: translate3d(100%, 0, 0);
 
+      img {
+        width: 110px;
+        height: 110px;
+      }
+    }
     .container {
       height: 100%;
       display: flex;
@@ -613,7 +656,7 @@ $secondary-color: #eece1a;
       justify-content: space-between;
       .title {
         width: 100%;
-        height: 20%;
+        height: 15%;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -628,6 +671,9 @@ $secondary-color: #eece1a;
       }
 
       .contact-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         font-size: 7px;
         width: 100%;
         height: 100%;
@@ -646,9 +692,9 @@ $secondary-color: #eece1a;
         }
         .message {
           form {
+            height: 60%;
             input {
-              margin: 1px;
-              height: 28px;
+              margin: 0;
             }
           }
         }
