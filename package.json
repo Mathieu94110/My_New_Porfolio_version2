@@ -11,8 +11,16 @@
     "build": "webpack --config webpack.prod.js",
     "deploy": "gh-pages -d dist"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mathieu94110/My_New_Porfolio_version2.git"
+  },
+  "keywords": [],
   "author": "",
   "license": "ISC",
+    "bugs": {
+    "url": "https://github.com/Mathieu94110/My_New_Porfolio_version2/issues"
+  },
  "devDependencies": {
     "@babel/core": "^7.12.3",
     "@babel/preset-env": "^7.12.1",
