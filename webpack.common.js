@@ -9,8 +9,7 @@ module.exports = {
   entry: "./src/index.js",
 
   output: {
-    filename: "[name]-[hash:8].js",
-    path: path.resolve(__dirname, "dist"),
+    publicPath: "/My_New_Portfolio_version2/",
   },
 
   plugins: [
