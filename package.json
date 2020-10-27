@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "My new Responsive website version 2",
   "private": false,
-    "homepage":"http://Mathieu94110.github.io/My_New_Porfolio_version2/",
+    "homepage":"https://Mathieu94110.github.io/My_New_Porfolio_version2",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --open --config webpack.dev.js",
