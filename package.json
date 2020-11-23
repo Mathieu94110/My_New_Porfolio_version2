@@ -1,10 +1,9 @@
 {
-
   "name": "my-new-portfolio-with-webpack",
   "version": "1.0.0",
   "description": "My new Responsive website version 2",
   "private": false,
-    "homepage":"https://Mathieu94110.github.io/My_New_Porfolio_version2",
+  "homepage": "https://Mathieu94110.github.io/My_New_Porfolio_version2",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --open --config webpack.dev.js",
@@ -16,12 +15,12 @@
     "url": "git+https://github.com/Mathieu94110/My_New_Porfolio_version2.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "My New Portfolio version 2",
   "license": "ISC",
-    "bugs": {
+  "bugs": {
     "url": "https://github.com/Mathieu94110/My_New_Porfolio_version2/issues"
   },
- "devDependencies": {
+  "devDependencies": {
     "@babel/core": "^7.12.3",
     "@babel/preset-env": "^7.12.1",
     "babel-loader": "^8.1.0",
