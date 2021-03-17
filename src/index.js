@@ -57,10 +57,10 @@ function toggleMenu() {
 //      <button class="btn">Envoyer</button>
 
 function validateForm() {
-  var name = window.document.getElementById("names").value;
-  var email = window.document.getElementById("email").value;
-  var error_message = window.document.getElementById("error_message");
-  var text;
+  let name = window.document.getElementById("names").value;
+  let email = window.document.getElementById("email").value;
+  let error_message = window.document.getElementById("error_message");
+  let text;
   error_message.style.padding = "10px";
   if (name.length < 5) {
     text = "Merci d'indiqué un Nom valide !";
@@ -77,3 +77,89 @@ function validateForm() {
   error_message.style.padding = "0px";
   return true;
 }
+//Skills Animations
+
+//Rotate img_logo
+
+$(".skills").each(function (index, element) {
+  let tl = new TimelineMax({ paused: true, reversed: true });
+  tl.to(this, 0.5, { scale: 1.4 });
+  $(element).hover(makeItHappen, makeItHappen);
+
+  function makeItHappen() {
+    tl.reversed() ? tl.play() : tl.reverse();
+  }
+});
+//Modal onClick opening
+let box = $(".box");
+
+let action = new TimelineMax({ paused: true, reversed: true }).to(box, 0.8, {
+  x: "+=50vw",
+  ease: Power0.easeNone,
+});
+
+$(".skills").click(function () {
+  gsap.to(".skills", { scale: 1 });
+  action.reversed() ? action.play() : action.reverse();
+});
+
+//
+/*
+TweenLite.set(".SlideModalBottom", { autoAlpha: 0, y: 50 });
+TweenLite.set(".modalOverlay", { autoAlpha: 0 });
+
+let quickLinksTradeBTN = document.getElementById("quickLinksTradeBTN");
+
+quickLinksTradeBTN.onclick = function () {
+  let rect = this.getBoundingClientRect();
+  TweenMax.set(".modalOverlay", {
+    x: rect.left,
+    y: rect.top,
+    height: rect.height,
+    width: rect.width,
+  });
+
+  let tl = new TimelineMax();
+
+  tl.to(".modalOverlay", 0.3, {
+    height: window.innerHeight,
+    width: window.innerWidth,
+    x: 0,
+    y: 0,
+    autoAlpha: 1,
+  });
+
+  tl.to(".SlideModalBottom", 0.5, {
+    autoAlpha: 1,
+    y: 0,
+    ease: Power1.easeInOut,
+  });
+
+  SlideModalBottomToggle = true;
+
+  let modelBottomLabel = document.getElementById("modelBottomLabel");
+  modelBottomLabel.innerHTML = "Modal Content Here";
+};
+
+modalOverlay1.onclick = function () {
+  if (SlideModalBottomToggle == true) {
+    TweenMax.to(".SlideNavLeft", 0.5, { x: 0, ease: Power1.easeInOut });
+
+    TweenLite.to(".SlideNavRight", 0.5, { x: 0, ease: Power1.easeInOut });
+
+    TweenLite.to(".SlideModalBottom", 0.4, {
+      autoAlpha: 0,
+      y: 50,
+      ease: Power1.easeInOut,
+    });
+
+    TweenLite.to(".modalOverlay", 0.5, {
+      autoAlpha: 0,
+      ease: Power1.easeInOut,
+    });
+
+    slideModalBottom = false;
+  } else {
+  }
+};
+*/

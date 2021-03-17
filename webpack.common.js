@@ -26,18 +26,26 @@ module.exports = {
       },
     }),
     new HtmlWebpackPlugin({
-      filename: "my-work.html",
-      template: "./src/my-work.html",
+      filename: "about-me.html",
+      template: "./src/about-me.html",
       minify: {
         removeAttributeQuotes: true,
         collapseWhitespace: true,
         removeComments: true,
       },
     }),
-
     new HtmlWebpackPlugin({
-      filename: "about-me.html",
-      template: "./src/about-me.html",
+      filename: "skills.html",
+      template: "./src/skills.html",
+      minify: {
+        removeAttributeQuotes: true,
+        collapseWhitespace: true,
+        removeComments: true,
+      },
+    }),
+    new HtmlWebpackPlugin({
+      filename: "my-work.html",
+      template: "./src/my-work.html",
       minify: {
         removeAttributeQuotes: true,
         collapseWhitespace: true,
