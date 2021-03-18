@@ -90,6 +90,7 @@ $(".skills_img").each(function (index, element) {
     tl.reversed() ? tl.play() : tl.reverse();
   }
 });
+
 //Modal html/css/js onClick opening left to right
 let container_one = document.getElementById("skills_one");
 let html = document.getElementById("skills_img_one");
@@ -107,18 +108,42 @@ CSSPlugin.defaultTransformPerspective = 300;
 let timeline = new TimelineLite({ paused: true });
 timeline
   .set(box, { x: "0vw", visibility: "visible", zIndex: 2 })
-  .to(skills_background_one, {
+  .to(skills_background_one, 0.1, {
     zIndex: 2,
     backgroundColor: "rgba(255,255,255,0.3)",
   })
-  .to(box, 1, { x: toPX("50vw") })
-  .to(box, 0.8, { rotationX: "360" });
+  .to(box, { x: toPX("50vw") })
+  .to(box, { rotationX: "360" })
+  .staggerFrom(
+    "ul.text_content>li",
+    0.5,
+    {
+      opacity: 0,
+      cycle: {
+        x: function (i) {
+          return (i + 1) * 50;
+        },
+        ease: function (i) {
+          return Back.easeOut.config(i * 0.3);
+        },
+      },
+    },
+    0.1
+  );
+
+/*
+  .to("ul.text_content>li", {
+    duration: 0.5,
+    delay: 4,
+    scale: 0,
+    stagger: 0.5,
+  });*/
 //animate out 3 seconds later
 
 let counter = 0;
 html.onclick = () => {
   ++counter;
-  console.log(counter);
+
   if (counter % 2 === 0) {
     timeline.reverse();
   } else {
@@ -137,17 +162,33 @@ let skills_background_two = document.getElementById("skills_two");
 let timelineTwo = new TimelineLite({ paused: true });
 timelineTwo
   .set(boxTwo, { x: "50vw", visibility: "visible", zIndex: 2 })
-  .to(skills_background_two, {
+  .to(skills_background_two, 0.1, {
     zIndex: 2,
     backgroundColor: "rgba(255,255,255,0.3)",
   })
   .to(boxTwo, 0.6, { x: toPX("0vw") })
-  .to(boxTwo, 1, { rotationX: "360" });
+  .to(boxTwo, 1, { rotationX: "360" })
+  .staggerFrom(
+    "ul.text_content_two>li",
+    0.5,
+    {
+      opacity: 0,
+      cycle: {
+        x: function (i) {
+          return (i + 1) * 50;
+        },
+        ease: function (i) {
+          return Back.easeOut.config(i * 0.3);
+        },
+      },
+    },
+    0.1
+  );
 //animate out 3 seconds later
 
 htmlTwo.onclick = () => {
   ++counter;
-  console.log(counter);
+
   if (counter % 2 === 0) {
     timelineTwo.reverse();
   } else {
@@ -169,17 +210,33 @@ CSSPlugin.defaultTransformPerspective = 300;
 let timelineThree = new TimelineLite({ paused: true });
 timelineThree
   .set(boxThree, { x: "0vw", visibility: "visible", zIndex: 2 })
-  .to(skills_background_three, {
+  .to(skills_background_three, 0.1, {
     zIndex: 2,
     backgroundColor: "rgba(255,255,255,0.3)",
   })
   .to(boxThree, 0.6, { x: toPX("50vw") })
-  .to(boxThree, 1, { rotationX: "360" });
+  .to(boxThree, 1, { rotationX: "360" })
+  .staggerFrom(
+    "ul.text_content_three>li",
+    0.5,
+    {
+      opacity: 0,
+      cycle: {
+        x: function (i) {
+          return (i + 1) * 50;
+        },
+        ease: function (i) {
+          return Back.easeOut.config(i * 0.3);
+        },
+      },
+    },
+    0.1
+  );
 //animate out 3 seconds later
 
 htmlThree.onclick = () => {
   ++counter;
-  console.log(counter);
+
   if (counter % 2 === 0) {
     timelineThree.reverse();
   } else {
@@ -199,16 +256,32 @@ let skills_background_four = document.getElementById("skills_four");
 let timelineFour = new TimelineLite({ paused: true });
 timelineFour
   .set(boxFour, { x: "50vw", visibility: "visible", zIndex: 2 })
-  .to(skills_background_four, {
+  .to(skills_background_four, 0.1, {
     zIndex: 2,
     backgroundColor: "rgba(255,255,255,0.3)",
   })
   .to(boxFour, 0.6, { x: toPX("0vw") })
-  .to(boxFour, 1, { rotationX: "360" });
+  .to(boxFour, 1, { rotationX: "360" })
+  .staggerFrom(
+    "ul.text_content_four>li",
+    0.5,
+    {
+      opacity: 0,
+      cycle: {
+        x: function (i) {
+          return (i + 1) * 50;
+        },
+        ease: function (i) {
+          return Back.easeOut.config(i * 0.3);
+        },
+      },
+    },
+    0.1
+  );
 //animate out 3 seconds later
 htmlFour.onclick = () => {
   ++counter;
-  console.log(counter);
+
   if (counter % 2 === 0) {
     timelineFour.reverse();
   } else {
@@ -230,16 +303,32 @@ CSSPlugin.defaultTransformPerspective = 300;
 let timelineFive = new TimelineLite({ paused: true });
 timelineFive
   .set(boxFive, { x: "0vw", visibility: "visible", zIndex: 2 })
-  .to(skills_background_five, {
+  .to(skills_background_five, 0.1, {
     zIndex: 2,
     backgroundColor: "rgba(255,255,255,0.3)",
   })
   .to(boxFive, 0.6, { x: toPX("50vw") })
-  .to(boxFive, 1, { rotationX: "360" });
+  .to(boxFive, 1, { rotationX: "360" })
+  .staggerFrom(
+    "ul.text_content_five>li",
+    0.5,
+    {
+      opacity: 0,
+      cycle: {
+        x: function (i) {
+          return (i + 1) * 50;
+        },
+        ease: function (i) {
+          return Back.easeOut.config(i * 0.3);
+        },
+      },
+    },
+    0.1
+  );
 //animate out 3 seconds later
 htmlFive.onclick = () => {
   ++counter;
-  console.log(counter);
+
   if (counter % 2 === 0) {
     timelineFive.reverse();
   } else {
@@ -259,16 +348,32 @@ let skills_background_six = document.getElementById("skills_six");
 let timelineSix = new TimelineLite({ paused: true });
 timelineSix
   .set(boxSix, { x: "50vw", visibility: "visible", zIndex: 2 })
-  .to(skills_background_six, {
+  .to(skills_background_six, 0.1, {
     zIndex: 2,
     backgroundColor: "rgba(255,255,255,0.3)",
   })
   .to(boxSix, 0.6, { x: toPX("0vw") })
-  .to(boxSix, 1, { rotationX: "360" });
+  .to(boxSix, 1, { rotationX: "360" })
+  .staggerFrom(
+    "ul.text_content_six>li",
+    0.5,
+    {
+      opacity: 0,
+      cycle: {
+        x: function (i) {
+          return (i + 1) * 50;
+        },
+        ease: function (i) {
+          return Back.easeOut.config(i * 0.3);
+        },
+      },
+    },
+    0.1
+  );
 //animate out 3 seconds later
 htmlSix.onclick = () => {
   ++counter;
-  console.log(counter);
+
   if (counter % 2 === 0) {
     timelineSix.reverse();
   } else {
